@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:payment_app/core/utils/styles.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({Key? key, required this.title, this.onTap}) : super(key: key);
+  const CustomButton({Key? key, required this.title, this.onTap,  this.isLoading=false}) : super(key: key);
 final String title;
 final void Function()? onTap;
+
+final bool isLoading;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -19,10 +21,10 @@ final void Function()? onTap;
           ),
         ),
         child:  Center(
-          child: Text(
+          child:isLoading?const CircularProgressIndicator(): Text(
               title,
             textAlign: TextAlign.center,
-            style: Styles.style22
+            style: Styles.style22,
           ),
         ),
       ),
