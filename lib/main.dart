@@ -4,8 +4,8 @@ import 'package:payment_app/core/utils/api_keys.dart';
 import 'package:payment_app/features/checkout/presentation/views/my_chart_screene/my_cart_view.dart';
 
 void main() {
-  Stripe.publishableKey=ApiKeys.publishableKey;
-      runApp(const CheckoutApp());
+  Stripe.publishableKey = ApiKeys.publishableKey;
+  runApp(const CheckoutApp());
 }
 
 class CheckoutApp extends StatelessWidget {
@@ -13,7 +13,6 @@ class CheckoutApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: MyCartView(),

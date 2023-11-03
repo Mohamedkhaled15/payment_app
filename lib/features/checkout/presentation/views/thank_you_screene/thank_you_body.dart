@@ -15,22 +15,22 @@ class buildThankYouViewBody extends StatelessWidget {
         children: [
           const TicketCard(),
           Positioned(
-              bottom: MediaQuery.sizeOf(context).height*.19+20,
+              bottom: MediaQuery.sizeOf(context).height * .19 + 20,
               left: 25,
               right: 25,
               child: const DashedLine()),
           Positioned(
-            left: -20,
-              bottom: MediaQuery.sizeOf(context).height*.19,
+              left: -20,
+              bottom: MediaQuery.sizeOf(context).height * .19,
               child: const CircleAvatar(
-            backgroundColor: Colors.white,
-          )),
+                backgroundColor: Colors.white,
+              )),
           Positioned(
-            right: -20,
-              bottom: MediaQuery.sizeOf(context).height*.19,
+              right: -20,
+              bottom: MediaQuery.sizeOf(context).height * .19,
               child: const CircleAvatar(
-            backgroundColor: Colors.white,
-          )),
+                backgroundColor: Colors.white,
+              )),
           const Positioned(
             top: -50,
             left: 0,
@@ -42,8 +42,3 @@ class buildThankYouViewBody extends StatelessWidget {
     );
   }
 }
-
-
-
-
-

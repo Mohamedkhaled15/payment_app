@@ -10,32 +10,31 @@ class PaymentMethods extends StatefulWidget {
 }
 
 class _PaymentMethodsState extends State<PaymentMethods> {
-  final List<String> paymentMethodsItem= [
+  final List<String> paymentMethodsItem = [
     'assets/images/card.svg',
     'assets/images/paypal.svg',
     'assets/images/apple.svg'
   ];
-int activeIndex=0;
+  int activeIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 62,
       child: ListView.builder(
-
-        itemBuilder: (context,index)=>Padding(
+        itemBuilder: (context, index) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: GestureDetector(
-              onTap: (){
-                activeIndex=index;
-                setState(() {
-
-                });
+              onTap: () {
+                activeIndex = index;
+                setState(() {});
               },
-              child: PaymentCards(image: paymentMethodsItem[index],isActive: activeIndex==index,)),
+              child: PaymentCards(
+                image: paymentMethodsItem[index],
+                isActive: activeIndex == index,
+              )),
         ),
         itemCount: paymentMethodsItem.length,
         scrollDirection: Axis.horizontal,
-
       ),
     );
   }
