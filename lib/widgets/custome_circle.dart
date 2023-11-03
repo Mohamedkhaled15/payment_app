@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomCheckCircle extends StatelessWidget
-{
+class CustomCheckCircle extends StatelessWidget {
   const CustomCheckCircle({
     super.key,
   });
@@ -14,7 +13,11 @@ class CustomCheckCircle extends StatelessWidget
       child: CircleAvatar(
         radius: 40,
         backgroundColor: Color(0xff34a853),
-        child: Icon(Icons.check,color: Colors.white,size: 50,),
+        child: Icon(
+          Icons.check,
+          color: Colors.white,
+          size: 50,
+        ),
       ),
     );
   }

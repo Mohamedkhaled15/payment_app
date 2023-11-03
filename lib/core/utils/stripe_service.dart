@@ -9,60 +9,64 @@ import '../../features/checkout/data/models/payment_intent_model/payment_intent_
 
 class StripeService {
   // final String secretKey='';
-  final ApiService apiService=ApiService();
+  final ApiService apiService = ApiService();
   Future<PaymentIntentModel> createPaymentIntent(
-      PaymentIntentInputModel paymentIntentInputModel) async{
-    var response= await apiService.post(
-    body: paymentIntentInputModel.toJson(),
-    contentType: Headers.formUrlEncodedContentType,
-    url: 'https://api.stripe.com/v1/payment_intents',
-    token: ApiKeys.secretKey,
-);
-
-     var paymentIntentModel = PaymentIntentModel.fromJson( response.data );
-
-     return paymentIntentModel;
-  }
-
-  Future initPaymentSheet({required InitialPaymentSheetInputModel initialPaymentSheetInputModel }) async {
-  await  Stripe.instance.initPaymentSheet(
-        paymentSheetParameters: SetupPaymentSheetParameters(
-          paymentIntentClientSecret: initialPaymentSheetInputModel.clientSecret,
-          customerEphemeralKeySecret: initialPaymentSheetInputModel.ephemeralKeySecret,
-          customerId: initialPaymentSheetInputModel.customerId,
-          merchantDisplayName: 'Mohamed_khaled',
-
-
-        )
+      PaymentIntentInputModel paymentIntentInputModel) async {
+    var response = await apiService.post(
+      body: paymentIntentInputModel.toJson(),
+      contentType: Headers.formUrlEncodedContentType,
+      url: 'https://api.stripe.com/v1/payment_intents',
+      token: ApiKeys.secretKey,
     );
+
+    var paymentIntentModel = PaymentIntentModel.fromJson(response.data);
+
+    return paymentIntentModel;
   }
 
-  Future displayPaymentSheet()async{
+  Future initPaymentSheet(
+      {required InitialPaymentSheetInputModel
+          initialPaymentSheetInputModel}) async {
+    await Stripe.instance.initPaymentSheet(
+        paymentSheetParameters: SetupPaymentSheetParameters(
+      paymentIntentClientSecret: initialPaymentSheetInputModel.clientSecret,
+      customerEphemeralKeySecret:
+          initialPaymentSheetInputModel.ephemeralKeySecret,
+      customerId: initialPaymentSheetInputModel.customerId,
+      merchantDisplayName: 'Mohamed_khaled',
+    ));
+  }
 
+  Future displayPaymentSheet() async {
     await Stripe.instance.presentPaymentSheet();
   }
 
-  Future makePayment({required PaymentIntentInputModel paymentIntentInputModel})async{
-    var paymentIntentModel=await createPaymentIntent(paymentIntentInputModel);
-    var ephemeralKeyModel= await createEphemeralKey(customerId: paymentIntentInputModel.customerId);
-    var  initPaymentSheetInputModel=InitialPaymentSheetInputModel(clientSecret: paymentIntentModel.clientSecret!,
-        customerId: paymentIntentInputModel.customerId, ephemeralKeySecret:ephemeralKeyModel.secret! );
-    await initPaymentSheet(initialPaymentSheetInputModel: initPaymentSheetInputModel);
+  Future makePayment(
+      {required PaymentIntentInputModel paymentIntentInputModel}) async {
+    var paymentIntentModel = await createPaymentIntent(paymentIntentInputModel);
+    var ephemeralKeyModel = await createEphemeralKey(
+        customerId: paymentIntentInputModel.customerId);
+    var initPaymentSheetInputModel = InitialPaymentSheetInputModel(
+        clientSecret: paymentIntentModel.clientSecret!,
+        customerId: paymentIntentInputModel.customerId,
+        ephemeralKeySecret: ephemeralKeyModel.secret!);
+    await initPaymentSheet(
+        initialPaymentSheetInputModel: initPaymentSheetInputModel);
     await displayPaymentSheet();
   }
 
-  Future<EphemeralKeyModel> createEphemeralKey({ required String customerId})
-  async{
-    var response=await  apiService.post(body: {'customer':customerId},
+  Future<EphemeralKeyModel> createEphemeralKey(
+      {required String customerId}) async {
+    var response = await apiService.post(
+        body: {'customer': customerId},
         contentType: Headers.formUrlEncodedContentType,
-        url:'https://api.stripe.com/v1/ephemeral_keys' ,
-        token:ApiKeys.secretKey,
-        headers: {'Authorization':"Bearer ${ApiKeys.secretKey}",
-          'Stripe-Version':'2023-10-16'}
-    );    var ephemeralKey=EphemeralKeyModel.fromJson(response.data);    return  ephemeralKey ;  }
+        url: 'https://api.stripe.com/v1/ephemeral_keys',
+        token: ApiKeys.secretKey,
+        headers: {
+          'Authorization': "Bearer ${ApiKeys.secretKey}",
+          'Stripe-Version': '2023-10-16'
+        });
+    var ephemeralKey = EphemeralKeyModel.fromJson(response.data);
+    return ephemeralKey;
+  }
 }
-
-
-
-
-

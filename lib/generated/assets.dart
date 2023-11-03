@@ -4,5 +4,4 @@ class Assets {
 
   static const String imagesArrow = 'assets/images/Arrow.svg';
   static const String imagesCharty = 'assets/images/charty.png';
-
 }

@@ -6,8 +6,9 @@ class PaymentCards extends StatelessWidget {
   // final double height;
   final bool isActive;
   const PaymentCards({
-
-    super.key, required this.image,  this.isActive=false,
+    super.key,
+    required this.image,
+    this.isActive = false,
   });
 
   @override
@@ -18,13 +19,14 @@ class PaymentCards extends StatelessWidget {
       height: 62,
       decoration: ShapeDecoration(
         shape: RoundedRectangleBorder(
-          side: BorderSide(width: 1.50,
-              color: isActive? const Color(0xFF34A853): Colors.grey),
+          side: BorderSide(
+              width: 1.50,
+              color: isActive ? const Color(0xFF34A853) : Colors.grey),
           borderRadius: BorderRadius.circular(15),
         ),
         shadows: [
           BoxShadow(
-            color: isActive? const Color(0xFF34A853): Colors.white,
+            color: isActive ? const Color(0xFF34A853) : Colors.white,
             blurRadius: 4,
             offset: const Offset(0, 0),
             spreadRadius: 0,
@@ -32,12 +34,16 @@ class PaymentCards extends StatelessWidget {
         ],
       ),
       child: Container(
-
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(15),
         ),
-        child: Center(child: SvgPicture.asset(image,height: 30,fit: BoxFit.scaleDown,)),
+        child: Center(
+            child: SvgPicture.asset(
+          image,
+          height: 30,
+          fit: BoxFit.scaleDown,
+        )),
       ),
     );
   }

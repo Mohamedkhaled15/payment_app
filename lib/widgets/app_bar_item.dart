@@ -3,9 +3,6 @@ import 'package:flutter_svg/svg.dart';
 
 import '../core/utils/styles.dart';
 
-
-
-
 AppBar buildAppBar({final String? title}) {
   return AppBar(
     leading: Center(
@@ -16,10 +13,7 @@ AppBar buildAppBar({final String? title}) {
     elevation: 0,
     backgroundColor: Colors.transparent,
     centerTitle: true,
-    title: Text(
-        title ?? '',
-        textAlign: TextAlign.center,
-        style:Styles.style24
-    ),
+    title:
+        Text(title ?? '', textAlign: TextAlign.center, style: Styles.style24),
   );
 }

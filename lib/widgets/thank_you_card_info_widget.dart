@@ -13,31 +13,29 @@ class CardInfoWidget extends StatelessWidget {
     return Container(
       width: 305,
       // height: 73,
-      padding: EdgeInsets.symmetric(vertical: 16,horizontal: 22),
+      padding: EdgeInsets.symmetric(vertical: 16, horizontal: 22),
       decoration: ShapeDecoration(
         color: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
       ),
-      child:  Row(
+      child: Row(
         children: [
-          SvgPicture.asset('assets/images/logo.svg',height: 30,),
+          SvgPicture.asset(
+            'assets/images/logo.svg',
+            height: 30,
+          ),
           const SizedBox(width: 20),
           Text.rich(
             TextSpan(
               children: [
-                TextSpan(
-                    text: 'Credit Card ',
-                    style: Styles.style18
-                ),
-                TextSpan(
-                    text: 'Mastercard **78 ',
-                    style: Styles.style16
-                ),
+                TextSpan(text: 'Credit Card ', style: Styles.style18),
+                TextSpan(text: 'Mastercard **78 ', style: Styles.style16),
               ],
             ),
-          )],
+          )
+        ],
       ),
     );
   }
